@@ -2,7 +2,7 @@ from fastapi import APIRouter, Body
 from fastapi.responses import RedirectResponse
 import starlette.status as status
 
-from schemas import TextData, AuthMessage, AuthResponse
+from schemas import TextData, AuthMessage, AuthResponse, RegMessage, RegResponse
 from db import DB
 
 router = APIRouter()
@@ -41,3 +41,22 @@ def authentification(auth_message: AuthMessage) -> AuthResponse:
             )
         )
 
+@router.post(path + '/reg', tags=["Registration"], response_model=RegResponse)
+def registration(auth_message: RegMessage) -> RegResponse:
+
+    email, password, user_type = auth_message.email.text, auth_message.password.text, auth_message.usertype.text
+
+    reg_response = executor.registrate(email, password, user_type)
+
+    if reg_response is "OK":
+        return RegResponse(
+            status=TextData(
+                text=reg_response
+            )
+        )
+    else:
+        return RegResponse(
+            status=TextData(
+                text=reg_response
+            )
+        )

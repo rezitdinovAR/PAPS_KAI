@@ -14,7 +14,7 @@ class DB:
 
     def authorize(self, email, password):
         self.cursor.execute("SELECT count(*) FROM Users WHERE Email=%s", (email,))
-        if not self.cursor.fetchone()[0]:
+        if self.cursor.fetchone()[0]:
             self.cursor.execute("SELECT Password FROM users WHERE Email=%s", (email,))
             if self.cursor.fetchone() == password:
                 self.cursor.execute("SELECT UserType FROM Users WHERE Email=%s", (email,))
@@ -24,3 +24,10 @@ class DB:
         else:
             return "Incorrect Email"
 
+    def registrate(self, email, password, usertype):
+        self.cursor.execute("SELECT count(*) FROM Users WHERE Email=%s", (email,))
+        if not self.cursor.fetchone()[0]:
+            self.cursor.execute("INSERT INTO Users (Email, Password, UserType) VALUES (%s, %s, %s)", (email, password, usertype))
+            return "OK"
+        else:
+            return "Incorrect Email"

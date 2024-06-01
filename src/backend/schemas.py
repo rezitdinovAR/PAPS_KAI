@@ -10,3 +10,11 @@ class AuthMessage(BaseModel):
 class AuthResponse(BaseModel):
     status: TextData
     usertype: TextData
+
+class RegMessage(BaseModel):
+    email: TextData
+    password: TextData
+    usertype: TextData
+
+class RegResponse(BaseModel):
+    status: TextData
