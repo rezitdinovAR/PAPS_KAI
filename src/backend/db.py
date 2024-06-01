@@ -13,11 +13,11 @@ class DB:
         self.cursor = connection.cursor()
 
     def authorize(self, email, password):
-        self.cursor.execute(f"SELECT count(*) FROM users WHERE email={email}")
-        if self.cursor.fetchone():
-            self.cursor.execute(f"SELECT Password FROM users WHERE email={email}")
+        self.cursor.execute("SELECT count(*) FROM Users WHERE Email=%s", (email,))
+        if not self.cursor.fetchone()[0]:
+            self.cursor.execute("SELECT Password FROM users WHERE Email=%s", (email,))
             if self.cursor.fetchone() == password:
-                self.cursor.execute(f"SELECT UserType FROM users WHERE email={email}")
+                self.cursor.execute("SELECT UserType FROM Users WHERE Email=%s", (email,))
                 return self.cursor.fetchone()
             else:
                 return "Incorrect Password"

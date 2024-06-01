@@ -15,12 +15,12 @@ async def main():
 
 path='/api'
 
-@router.get(path + '/auth', tags=["Authentication"], response_model=AuthMessage)
+@router.post(path + '/auth', tags=["Authorization"], response_model=AuthResponse)
 def authentification(auth_message: AuthMessage) -> AuthResponse:
 
-    emal, password = auth_message.email.text, auth_message.password.text
+    email, password = auth_message.email.text, auth_message.password.text
 
-    auth_response = executor.authorize()
+    auth_response = executor.authorize(email, password)
 
     if auth_response in ['org', 'own']:
         return AuthResponse(
