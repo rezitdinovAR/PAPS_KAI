@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>МероПоиск - Регистрация</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #fff;
+        }
+
+        .header {
+            width: 100%;
+            background-color: #FF7F32;
+            padding: 10px 0;
+            text-align: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .register-container {
+            background-color: #FFB27F;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+	    margin: 20px auto;
+            text-align: center;
+        }
+
+        .register-container h2 {
+            margin-top: 0;
+            font-size: 18px;
+        }
+
+        .register-container input[type="text"],
+        .register-container input[type="email"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .register-container input[type="submit"] {
+            background-color: #A15C34;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .register-container input[type="submit"]:hover {
+            background-color: #e06c29;
+        }
+
+        .register-container a {
+            display: block;
+            margin-top: 10px;
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        .register-container a:hover {
+            text-decoration: underline;
+        }
+
+        .register-container .user-type {
+            display: flex;
+            justify-content: center;
+            margin: 10px 0;
+        }
+
+        .register-container .user-type button {
+            background-color: #A15C34;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            margin: 0 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .register-container .user-type button:hover {
+            background-color: #e06c29;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        МероПоиск
+    </div>
+    <div class="register-container">
+        <h2>Регистрация</h2>
+        <form action="#" method="post">
+            <input type="text" name="role" placeholder="Владелец/Организатор" required>
+            <input type="email" name="email" placeholder="Email" required>
+	    <input type="text" name="password" placeholder="Пароль" required>
+            <input type="submit" value="Зарегистрироваться">
+        </form>
+    </div>
+</body>
+
+<script>
+document.getElementById('registerForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const role = document.getElementById('role').value;
+    const fullname = document.getElementById('fullname').value;
+    const email = document.getElementById('email').value;
+
+    // Создаем объект FormData для отправки данных формы
+    const formData = new FormData();
+    formData.append('role', role);
+    formData.append('fullname', fullname);
+    formData.append('email', email);
+
+    // Отправляем данные на сервер с помощью fetch API
+    fetch('url_обработчика_формы', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => {
+        if (response.ok) {
+            // Перенаправляем пользователя на соответствующую страницу в зависимости от значения поля "Владелец/Организатор"
+            if (role === 'Владелец') {
+                window.location.href = 'OwnerAccount.html';
+            } else if (role === 'Организатор') {
+                window.location.href = 'ClientAccount.html';
+            } else {
+                console.error('Ошибка при определении роли');
+            }
+        } else {
+            console.error('Ошибка при отправке данных на сервер');
+        }
+    })
+    .catch(error => {
+        console.error('Произошла ошибка:', error);
+    });
+});
+</script>
+
+</html>

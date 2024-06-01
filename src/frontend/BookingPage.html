@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>МероПоиск - Бронирование</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #fff;
+        }
+
+        .header {
+            width: 100%;
+            background-color: #FF7F32;
+            padding: 10px 0;
+            text-align: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            position: relative;
+        }
+
+        .header .user-info {
+            position: absolute;
+            right: 20px;
+            top: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .header .user-info img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .header .user-info span {
+            color: white;
+            font-size: 16px;
+        }
+
+        .content {
+            width: 80%;
+            margin: 20px auto;
+            background-color: #FFB27F;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .content h2 {
+            text-align: center;
+            font-size: 24px;
+            margin-top: 0;
+        }
+.hall-details {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+        }
+
+        .hall-details img {
+            width: 200px;
+            height: 200px;
+            border-radius: 10px;
+            background-color: #ccc;
+        }
+
+        .hall-info {
+            flex-grow: 1;
+            margin-left: 20px;
+        }
+
+        .hall-info h3 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .hall-info p {
+            margin: 5px 0;
+            font-size: 16px;
+        }
+
+        .hall-info ul {
+            margin: 5px 0;
+            padding-left: 20px;
+            font-size: 16px;
+        }
+
+        .hall-info ul li {
+            margin: 5px 0;
+        }
+
+        .hall-info .price {
+            margin: 10px 0;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .booking-info {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .booking-info .info-block {
+            background-color: #FF7F32;
+            color: white;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+
+        .payment-methods {
+            background-color: #ccc;
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .payment-methods h2 {
+            font-size: 20px;
+            margin: 0 0 10px 0;
+        }
+
+        .payment-methods .method {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            background-color: black;
+            margin: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        МероПоиск
+        <div class="user-info">
+            <img src="images/user_icon.png" alt="User Icon">
+            <span>Иван Иванович</span>
+        </div>
+    </div>
+    <div class="content">
+        <h2>Бронирование</h2>
+        <div class="hall-details">
+            <img src="hall_image.jpg" alt="Картинка зала">
+            <div class="hall-info">
+                <h3>Название зала</h3>
+                <p>Описание</p>
+                <ul>
+                    <li>1. От владельца</li>
+                    <li>2. Оборудование</li>
+                    <li>3. Персонал</li>
+                </ul>
+                <p class="price">Цена за 2 ч: 1000000 руб.</p>
+            </div>
+        </div>
+        <div class="booking-info">
+            <div class="info-block">Дата и время<br>24.03.2024 12:00-14:00</div>
+            <div class="info-block">Стоимость<br>1000000 руб.</div>
+        </div>
+        <div class="payment-methods">
+            <h2>Выбор оплаты</h2>
+            <div class="method"></div>
+            <div class="method"></div>
+            <div class="method"></div>
+            <div class="method"></div>
+            <div class="method"></div>
+            <div class="method"></div>
+        </div>
+    </div>
+</body>
+</html>

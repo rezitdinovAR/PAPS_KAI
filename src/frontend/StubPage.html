@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>МероПоиск - Оплата успешно прошла</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #fff;
+        }
+
+        .header {
+            width: 100%;
+            background-color: #FF7F32;
+            padding: 10px 0;
+            text-align: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .header .user-info {
+            position: absolute;
+            right: 20px;
+            top: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .header .user-info img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .header .user-info span {
+            color: white;
+            font-size: 16px;
+        }
+
+        .content {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .content h2 {
+            font-size: 24px;
+            color: #4CAF50;
+        }
+
+        .content p {
+            font-size: 18px;
+            margin: 20px 0;
+        }
+
+        .content button {
+            background-color: #FF7F32;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .content button:hover {
+            background-color: #e06c29;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        МероПоиск
+        <div class="user-info">
+            <img src="images/user_icon.png" alt="User Icon">
+            <span>Иван Иванович</span>
+        </div>
+    </div>
+    <div class="content">
+        <h2>Оплата успешно прошла <span style="color: #4CAF50;">✔</span></h2>
+        <button onclick="window.location.href='index.html'">Вернуться назад</button>
+    </div>
+</body>
+</html>

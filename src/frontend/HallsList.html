@@ -1,0 +1,136 @@
+<!DOCTYPE html> 
+<html lang="ru"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>МероПоиск - Список залов</title> 
+    <style> 
+        body { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            margin: 0; 
+            font-family: Arial, sans-serif; 
+            background-color: #fff; 
+        } 
+ 
+        .header { 
+            width: 100%; 
+            background-color: #FF7F32; 
+            padding: 10px 0; 
+            text-align: center; 
+            color: white; 
+            font-size: 24px; 
+            font-weight: bold; 
+            position: relative; 
+        } 
+ 
+        .header .user-info { 
+            position: absolute; 
+            right: 20px; 
+            top: 10px; 
+            display: flex; 
+            align-items: center; 
+        } 
+ 
+        .header .user-info img { 
+            width: 30px; 
+            height: 30px; 
+            border-radius: 50%; 
+            margin-right: 10px; 
+        } 
+ 
+        .header .user-info span { 
+            color: white; 
+            font-size: 16px; 
+        } 
+ 
+        .content { 
+            width: 80%; 
+            margin: 20px auto; 
+            background-color: #FFB27F; 
+            padding: 20px; 
+            border-radius: 15px; 
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+        } 
+ 
+        .content h2 { 
+            text-align: center; 
+            font-size: 24px; 
+            margin-top: 0; 
+        } 
+ 
+        .hall { 
+            display: flex; 
+            background-color: #fff; 
+            border-radius: 10px; 
+            margin: 10px 0; 
+            padding: 10px; 
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+            align-items: center; 
+        } 
+ 
+        .hall img { 
+            width: 150px; 
+            height: 100px; 
+            border-radius: 10px; 
+            margin-right: 20px; 
+        } 
+ 
+        .hall-details { 
+            flex-grow: 1; 
+        } 
+ 
+        .hall-details h3 { 
+            margin: 0; 
+            font-size: 18px; 
+            background-color: #FF7F32; 
+            color: white; 
+            display: inline-block; 
+            padding: 5px 10px; 
+            border-radius: 5px; 
+        } 
+ 
+        .hall-details p { 
+            margin: 5px 0 0 0; 
+            font-size: 14px; 
+        } 
+    </style> 
+</head> 
+<body> 
+    <div class="header"> 
+        МероПоиск 
+        <div class="user-info"> 
+            <img src="images/user_icon.png" alt="User Icon"> 
+            <span>Иван Иванович</span> 
+        </div> 
+    </div> 
+    <div class="content"> 
+        <h2>Список залов</h2> 
+         
+        <div class="hall"> 
+            <img src="hall_image1.jpg" alt="Hall 1"> 
+            <div class="hall-details"> 
+                <h3>Б. Красная, д. 55</h3> 
+                <p>Описание зала от владельца, несущее в себе информацию о самом зале и о оборудовании в нем</p> 
+            </div> 
+        </div> 
+         
+        <div class="hall"> 
+            <img src="hall_image2.jpg" alt="Hall 2"> 
+            <div class="hall-details"> 
+                <h3>Толстого, д. 15</h3> 
+                <p>Описание зала от владельца, несущее в себе информацию о самом зале и о оборудовании в нем</p> 
+            </div> 
+        </div> 
+         
+        <div class="hall"> 
+            <img src="hall_image3.jpg" alt="Hall 3"> 
+            <div class="hall-details"> 
+                <h3>Читаева, д. 18</h3> 
+                <p>Описание зала от владельца, несущее в себе информацию о самом зале и о оборудовании в нем</p> 
+            </div> 
+        </div> 
+    </div> 
+</body> 
+</html>
