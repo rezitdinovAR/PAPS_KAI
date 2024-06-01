@@ -60,3 +60,4 @@ def registration(auth_message: RegMessage) -> RegResponse:
                 text=reg_response
             )
         )
+
