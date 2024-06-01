@@ -31,3 +31,22 @@ class DB:
             return "OK"
         else:
             return "Incorrect Email"
+
+    def load_org(self, email):
+        self.cursor.execute("SELECT UserID FROM Users WHERE Email=%s", (email,))
+        userid = self.cursor.fetchone()[0]
+        self.cursor.execute("SELECT HallID, BookingDate, StartDate, EndDate FROM Booking WHERE UserID=%s", (userid,))
+        raw_book_info = self.cursor.fetchall()
+        book_info = {}
+        for row in raw_book_info:
+            if row[0] not in book_info.keys():
+                self.cursor.execute("SELECT Loc, HallImg FROM Halls WHERE HallID=%s",)
+                additional = self.cursor.fetchone()
+                book_info[row[0]] = [[row[1]], [row[2]], [row[3]]] + additional
+
+            else:
+                book_info[row[0]][0].append(row[1])
+                book_info[row[0]][1].append(row[2])
+                book_info[row[0]][2].append(row[3])
+
+        return book_info

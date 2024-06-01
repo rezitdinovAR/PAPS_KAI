@@ -2,7 +2,7 @@ from fastapi import APIRouter, Body
 from fastapi.responses import RedirectResponse
 import starlette.status as status
 
-from schemas import TextData, AuthMessage, AuthResponse, RegMessage, RegResponse
+from schemas import TextData, AuthMessage, AuthResponse, RegMessage, RegResponse, StructData, LoadOrgResponse
 from db import DB
 
 router = APIRouter()
@@ -12,11 +12,6 @@ executor = DB()
 async def main():
     # Redirect to /docs (relative URL)
     return RedirectResponse(url="/docs", status_code=status.HTTP_302_FOUND)
-
-@app.get("/favicon.ico", include_in_schema=False)
-async def favicon():
-    file_path = os.path.join(os.path.dirname(__file__), "favicon.ico")
-    return FileResponse(file_path)
 
 path='/api'
 
@@ -66,4 +61,16 @@ def registration(auth_message: RegMessage) -> RegResponse:
             )
         )
 
-@router.get(path + '/load_org/{user_id}', tags=["Registration"], response_model=RegResponse)
+@router.get(path + '/load_org/{email}', tags=["LoadOrg"], response_model=RegResponse)
+def load_org(user_id: str) -> RegResponse:
+    raw_info = executor.load_org(user_id)
+    info = {}
+
+    for key in raw_info.keys():
+        info[raw_info[key][3]] = [raw_info[key][0], raw_info[key][1], raw_info[key][2], raw_info[key][4]]
+
+    return LoadOrgResponse(
+        info=StructData(
+            data=info
+        )
+    )

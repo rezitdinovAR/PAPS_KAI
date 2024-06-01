@@ -3,6 +3,9 @@ from pydantic import BaseModel
 class TextData(BaseModel):
     text: str
 
+class StructData(BaseModel):
+    data: dict
+
 class AuthMessage(BaseModel):
     email: TextData
     password: TextData
@@ -20,3 +23,4 @@ class RegResponse(BaseModel):
     status: TextData
 
 class LoadOrgResponse(BaseModel):
+    info: StructData
