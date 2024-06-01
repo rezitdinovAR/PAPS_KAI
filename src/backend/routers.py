@@ -61,7 +61,7 @@ def registration(auth_message: RegMessage) -> RegResponse:
             )
         )
 
-@router.get(path + '/load_org/{email}', tags=["LoadOrg"], response_model=RegResponse)
+@router.get(path + '/load_org/{email}', tags=["LoadOrg"], response_model=LoadOrgResponse)
 def load_org(email: str) -> RegResponse:
     raw_info = executor.load_org(email)
     info = {}
