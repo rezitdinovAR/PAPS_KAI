@@ -7,7 +7,7 @@ class DB:
             password="21032003",
             host="localhost",
             port="5432",
-            database="MeroSearch",
+            database="MeroPoisk",
         )
 
         self.cursor = connection.cursor()
