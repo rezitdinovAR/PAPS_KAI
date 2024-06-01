@@ -16,9 +16,9 @@ class DB:
         self.cursor.execute("SELECT count(*) FROM Users WHERE Email=%s", (email,))
         if self.cursor.fetchone()[0]:
             self.cursor.execute("SELECT Password FROM users WHERE Email=%s", (email,))
-            if self.cursor.fetchone() == password:
+            if self.cursor.fetchone()[0] == password:
                 self.cursor.execute("SELECT UserType FROM Users WHERE Email=%s", (email,))
-                return self.cursor.fetchone()
+                return self.cursor.fetchone()[0]
             else:
                 return "Incorrect Password"
         else:

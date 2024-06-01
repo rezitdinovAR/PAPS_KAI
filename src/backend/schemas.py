@@ -18,3 +18,5 @@ class RegMessage(BaseModel):
 
 class RegResponse(BaseModel):
     status: TextData
+
+class LoadOrgResponse(BaseModel):

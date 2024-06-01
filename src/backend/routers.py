@@ -13,6 +13,11 @@ async def main():
     # Redirect to /docs (relative URL)
     return RedirectResponse(url="/docs", status_code=status.HTTP_302_FOUND)
 
+@app.get("/favicon.ico", include_in_schema=False)
+async def favicon():
+    file_path = os.path.join(os.path.dirname(__file__), "favicon.ico")
+    return FileResponse(file_path)
+
 path='/api'
 
 @router.post(path + '/auth', tags=["Authorization"], response_model=AuthResponse)
@@ -61,3 +66,4 @@ def registration(auth_message: RegMessage) -> RegResponse:
             )
         )
 
+@router.get(path + '/load_org/{user_id}', tags=["Registration"], response_model=RegResponse)
