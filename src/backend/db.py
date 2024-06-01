@@ -35,7 +35,7 @@ class DB:
     def load_org(self, email):
         self.cursor.execute("SELECT UserID FROM Users WHERE Email=%s", (email,))
         userid = self.cursor.fetchone()[0]
-        self.cursor.execute("SELECT HallID, BookingDate, StartDate, EndDate FROM Booking WHERE UserID=%s", (userid,))
+        self.cursor.execute("SELECT HallID, BookingDate, StartDate, EndDate FROM Bookings WHERE UserID=%s", (userid,))
         raw_book_info = self.cursor.fetchall()
         book_info = {}
         for row in raw_book_info:
