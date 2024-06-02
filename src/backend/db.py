@@ -84,6 +84,9 @@ class DB:
 
     def del_hall(self, address):
         try:
+            self.cursor.execute("SELECT HallID FROM Halls WHERE Loc=%s", (address,))
+            hall = self.cursor.fetchone()[0]
+            self.cursor.execute("DELETE FROM Reviews WHERE HallID=%s", (hall,))
             self.cursor.execute("DELETE FROM Halls WHERE Loc=%s", (address,))
 
         except Exception as e:
