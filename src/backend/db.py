@@ -98,3 +98,17 @@ class DB:
 
         return hall
 
+    def list_reviews(self, address):
+        self.cursor.execute("SELECT HallID FROM Halls WHERE Loc=%s", (address,))
+        hall = self.cursor.fetchone()[0]
+        self.cursor.execute("SELECT BookingID FROM Bookings WHERE HallID=%s", (hall,))
+        bookings = self.cursor.fetchall()
+        info = {}
+
+        for booking in bookings:
+            self.cursor.execute("SELECT RevCom, Response FROM Reviews WHERE BookingID=%s", (booking[0],))
+            review = self.cursor.fetchone()
+            info[booking[0]] = [review[0], review[1]]
+
+        return info
+

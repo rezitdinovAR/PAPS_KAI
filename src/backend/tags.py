@@ -26,6 +26,10 @@ tags_metadata = [
     {
         "name":"HallPage",
         "description":"Вывод страницы зала"
+    },
+    {
+        "name":"ListReviews",
+        "description":"Вывод списка отзывов"
     }
 ]
 description = """

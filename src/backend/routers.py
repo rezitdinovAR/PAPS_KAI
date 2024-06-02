@@ -2,7 +2,7 @@ from fastapi import APIRouter, Body
 from fastapi.responses import RedirectResponse
 import starlette.status as status
 
-from schemas import TextData, AuthMessage, AuthResponse, RegMessage, RegResponse, StructData, LoadOrgMessage, LoadOrgResponse, DelBookMessage, LoadOwnMessage, LoadOwnResponse, ListHallsResponse, HallPageMessage, HallPageResponse
+from schemas import TextData, AuthMessage, AuthResponse, RegMessage, RegResponse, StructData, LoadOrgMessage, LoadOrgResponse, DelBookMessage, LoadOwnMessage, LoadOwnResponse, ListHallsResponse, HallPageMessage, HallPageResponse, ListReviewsMessage, ListReviewsResponse
 from db import DB
 
 router = APIRouter()
@@ -96,7 +96,7 @@ def load_own(to_load: LoadOwnMessage) -> LoadOwnResponse:
         )
     )
 
-@router.post(path+'list_halls', tags=["ListHalls"], response_model=ListHallsResponse)
+@router.post(path+'/list_halls', tags=["ListHalls"], response_model=ListHallsResponse)
 def list_halls() -> ListHallsResponse:
     info = executor.list_halls()
 
@@ -106,7 +106,7 @@ def list_halls() -> ListHallsResponse:
         )
     )
 
-@router.post(path+'hall_page', tags=["HallPage"], response_model=HallPageResponse)
+@router.post(path+'/hall_page', tags=["HallPage"], response_model=HallPageResponse)
 def list_halls(loc: HallPageMessage) -> HallPageResponse:
     info = executor.hall_page(loc.address.text)
 
@@ -124,4 +124,14 @@ def list_halls(loc: HallPageMessage) -> HallPageResponse:
         image=TextData(
             text=info[4]
         ),
+    )
+
+@router.post(path+'/list_reviews', tags=["ListReviews"], response_model=ListReviewsResponse)
+def list_reviews(loc: ListReviewsMessage) -> ListReviewsResponse:
+    reviews = executor.list_reviews(loc.address.text)
+
+    return ListReviewsResponse(
+        info=StructData(
+            data=reviews
+        )
     )

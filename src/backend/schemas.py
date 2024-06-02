@@ -52,3 +52,9 @@ class HallPageResponse(BaseModel):
     description: TextData
     price: int
     image:TextData
+
+class ListReviewsMessage(BaseModel):
+    address:TextData
+
+class ListReviewsResponse(BaseModel):
+    info:StructData
