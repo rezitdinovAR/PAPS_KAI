@@ -57,7 +57,7 @@ class DB:
 
         try:
             self.cursor.execute(
-                "DELETE FROM Booking WHERE HallID=%s AND BookingDate=%s AND StartDate=%s AND EndDate=%s",
+                "DELETE FROM Bookings WHERE HallID=%s AND BookingDate=%s AND StartDate=%s AND EndDate=%s",
                 (hallid, date_of_book, start_date, end_date))
 
         except Exception:
