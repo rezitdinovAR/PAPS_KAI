@@ -28,8 +28,7 @@ CREATE TABLE Bookings (
 
 CREATE TABLE Reviews (
     ReviewID SERIAL PRIMARY KEY,
-    BookingID INT REFERENCES Bookings(BookingID),
-    UserID INT REFERENCES Users(UserID),
+    HallID INT REFERENCES Halls(HallID),
     RevCom TEXT,
     Response TEXT
 );

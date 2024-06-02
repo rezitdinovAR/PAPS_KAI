@@ -36,6 +36,10 @@ tags_metadata = [
         "description":"Вывод списка отзывов"
     },
     {
+        "name":"AddReview",
+        "description":"Добавление отзыва"
+    },
+    {
         "name":"ListTimes",
         "description":"Вывод доступных времен"
     }

@@ -113,16 +113,23 @@ class DB:
     def list_reviews(self, address):
         self.cursor.execute("SELECT HallID FROM Halls WHERE Loc=%s", (address,))
         hall = self.cursor.fetchone()[0]
-        self.cursor.execute("SELECT BookingID FROM Bookings WHERE HallID=%s", (hall,))
-        bookings = self.cursor.fetchall()
         info = {}
 
-        for booking in bookings:
-            self.cursor.execute("SELECT RevCom, Response FROM Reviews WHERE BookingID=%s", (booking[0],))
-            review = self.cursor.fetchone()
-            info[booking[0]] = [review[0], review[1]]
+
+        self.cursor.execute("SELECT RevCom, Response FROM Reviews WHERE HallID=%s", (hall,))
+        reviews = self.cursor.fetchall()
+        revs = []
+
+        for review in reviews:
+            revs.append[review[0], review[1]]
+
+        info[hall] = revs
 
         return info
+
+    def add_review(self, address):
+        SELECT
+        self.cursor.execute("INSERT INTO Reviews ()")
 
     def list_times(self, address):
         self.cursor.execute("SELECT HallID FROM Halls WHERE Loc=%s", (address,))

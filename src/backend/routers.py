@@ -144,6 +144,16 @@ def list_reviews(loc: ListReviewsMessage) -> ListReviewsResponse:
         )
     )
 
+@router.post(path+'/add_review', tags=["AddReview"], response_model=RegResponse)
+def add_review(to_add: ListReviewsMessage) -> RegResponse:
+    status = executor.add_review(to_add.address.text)
+
+    return RegResponse(
+        status=TextData(
+            text=status
+        )
+    )
+
 @router.post(path+'/list_times', tags=["ListTimes"], response_model=ListTimesResponse)
 def list_times(to_list: RegactHallMessage) -> ListTimesResponse:
     times = executor.list_times(to_list.address.text)
@@ -153,3 +163,4 @@ def list_times(to_list: RegactHallMessage) -> ListTimesResponse:
             data=times
         )
     )
+
