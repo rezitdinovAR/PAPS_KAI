@@ -47,7 +47,7 @@ class HallPageMessage(BaseModel):
     address:TextData
 
 class HallPageResponse(BaseModel):
-    capacity: TextData
+    capacity: int
     equip: TextData
     description: TextData
     price: int
@@ -61,7 +61,7 @@ class ListReviewsResponse(BaseModel):
 
 class RegactHallMessage(BaseModel):
     address:TextData
-    capacity:TextData
+    capacity:int
     equip:TextData
     description:TextData
     price:int

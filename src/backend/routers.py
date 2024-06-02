@@ -107,13 +107,11 @@ def list_halls() -> ListHallsResponse:
     )
 
 @router.post(path+'/hall_page', tags=["HallPage"], response_model=HallPageResponse)
-def list_halls(loc: HallPageMessage) -> HallPageResponse:
+def hall_page(loc: HallPageMessage) -> HallPageResponse:
     info = executor.hall_page(loc.address.text)
 
     return HallPageResponse(
-        capacity=TextData(
-            text=info[0]
-        ),
+        capacity=info[0],
         equip = TextData(
             text=info[1]
         ),
@@ -138,7 +136,7 @@ def list_reviews(loc: ListReviewsMessage) -> ListReviewsResponse:
 
 @router.post(path+'/redact_hall', tags=["RedactHall"], response_model=RegResponse)
 def redact_hall(to_redact: RegactHallMessage) -> RegResponse:
-    status = executor.redact_hall(to_redact.address.text, to_redact.capacity.text, to_redact.equip.text, to_redact.description.text, to_redact.price, to_redact.image.text)
+    status = executor.redact_hall(to_redact.address.text, to_redact.capacity, to_redact.equip.text, to_redact.description.text, to_redact.price, to_redact.image.text)
 
     return RegResponse(
         status=TextData(
