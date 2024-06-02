@@ -2,7 +2,7 @@ from fastapi import APIRouter, Body
 from fastapi.responses import RedirectResponse
 import starlette.status as status
 
-from schemas import TextData, AuthMessage, AuthResponse, RegMessage, RegResponse, StructData, LoadOrgResponse, DelBookMessage
+from schemas import TextData, AuthMessage, AuthResponse, RegMessage, RegResponse, StructData, LoadOrgMessage, LoadOrgResponse, DelBookMessage
 from db import DB
 
 router = APIRouter()
@@ -61,9 +61,9 @@ def registration(auth_message: RegMessage) -> RegResponse:
             )
         )
 
-@router.get(path + '/load_org/{email}', tags=["LoadOrg"], response_model=LoadOrgResponse)
-def load_org(email: str) -> LoadOrgResponse:
-    raw_info = executor.load_org(email)
+@router.post(path + '/load_org', tags=["LoadOrg"], response_model=LoadOrgResponse)
+def load_org(to_load: LoadOrgMessage) -> LoadOrgResponse:
+    raw_info = executor.load_org(to_load.email.text)
     info = {}
 
     for key in raw_info.keys():

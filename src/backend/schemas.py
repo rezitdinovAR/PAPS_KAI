@@ -22,6 +22,9 @@ class RegMessage(BaseModel):
 class RegResponse(BaseModel):
     status: TextData
 
+class LoadOrgMessage(BaseModel):
+    email:TextData
+
 class LoadOrgResponse(BaseModel):
     info: StructData
 
