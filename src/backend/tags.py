@@ -30,6 +30,10 @@ tags_metadata = [
     {
         "name":"ListReviews",
         "description":"Вывод списка отзывов"
+    },
+    {
+        "name":"RedactHall",
+        "description":"Редактирование зала"
     }
 ]
 description = """

@@ -2,7 +2,7 @@ from fastapi import APIRouter, Body
 from fastapi.responses import RedirectResponse
 import starlette.status as status
 
-from schemas import TextData, AuthMessage, AuthResponse, RegMessage, RegResponse, StructData, LoadOrgMessage, LoadOrgResponse, DelBookMessage, LoadOwnMessage, LoadOwnResponse, ListHallsResponse, HallPageMessage, HallPageResponse, ListReviewsMessage, ListReviewsResponse
+from schemas import TextData, AuthMessage, AuthResponse, RegMessage, RegResponse, StructData, LoadOrgMessage, LoadOrgResponse, DelBookMessage, LoadOwnMessage, LoadOwnResponse, ListHallsResponse, HallPageMessage, HallPageResponse, ListReviewsMessage, ListReviewsResponse, RegactHallMessage
 from db import DB
 
 router = APIRouter()
@@ -133,5 +133,15 @@ def list_reviews(loc: ListReviewsMessage) -> ListReviewsResponse:
     return ListReviewsResponse(
         info=StructData(
             data=reviews
+        )
+    )
+
+@router.post(path+'/redact_hall', tags=["RedactHall"], response_model=RegResponse)
+def redact_hall(to_redact: RegactHallMessage) -> RegResponse:
+    status = executor.redact_hall(to_redact.address.text, to_redact.capacity.text, to_redact.equip.text, to_redact.description.text, to_redact.price, to_redact.image.text)
+
+    return RegResponse(
+        status=TextData(
+            text=status
         )
     )

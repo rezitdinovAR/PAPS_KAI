@@ -58,3 +58,11 @@ class ListReviewsMessage(BaseModel):
 
 class ListReviewsResponse(BaseModel):
     info:StructData
+
+class RegactHallMessage(BaseModel):
+    address:TextData
+    capacity:TextData
+    equip:TextData
+    description:TextData
+    price:int
+    image:TextData
