@@ -86,13 +86,23 @@ def delete_booking(to_delete:DelBookMessage) -> RegResponse:
         )
     )
 
-@router.post(path + '/load_own', tags=["LoadOwn"], response_model=LoadOwnResponse)
-def load_own(to_load: LoadOwnMessage) -> LoadOwnResponse:
-    info = executor.load_own(to_load.email.text)
+@router.post(path + '/del_hall', tags=["DeleteHall"], response_model=RegResponse)
+def del_hall(to_delete: HallPageMessage) -> RegResponse:
+    status = executor.del_hall(to_delete.address.text)
 
-    return LoadOwnResponse(
+    return RegResponse(
+        status=TextData(
+            text=status
+        )
+    )
+
+@router.post(path+'/list_reviews', tags=["ListReviews"], response_model=ListReviewsResponse)
+def list_reviews(loc: ListReviewsMessage) -> ListReviewsResponse:
+    reviews = executor.list_reviews(loc.address.text)
+
+    return ListReviewsResponse(
         info=StructData(
-            data=info
+            data=reviews
         )
     )
 
@@ -131,16 +141,6 @@ def list_reviews(loc: ListReviewsMessage) -> ListReviewsResponse:
     return ListReviewsResponse(
         info=StructData(
             data=reviews
-        )
-    )
-
-@router.post(path+'/redact_hall', tags=["RedactHall"], response_model=RegResponse)
-def redact_hall(to_redact: RegactHallMessage) -> RegResponse:
-    status = executor.redact_hall(to_redact.address.text, to_redact.capacity, to_redact.equip.text, to_redact.description.text, to_redact.price, to_redact.image.text)
-
-    return RegResponse(
-        status=TextData(
-            text=status
         )
     )
 

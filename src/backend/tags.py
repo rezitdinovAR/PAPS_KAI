@@ -20,6 +20,10 @@ tags_metadata = [
         "description":"Загрузка лк владельца"
     },
     {
+        "name":"DeleteHall",
+        "description":"Удаление зала"
+    },
+    {
         "name":"ListHalls",
         "description":"Вывод списка залов"
     },
@@ -30,10 +34,6 @@ tags_metadata = [
     {
         "name":"ListReviews",
         "description":"Вывод списка отзывов"
-    },
-    {
-        "name":"RedactHall",
-        "description":"Редактирование зала"
     },
     {
         "name":"ListTimes",

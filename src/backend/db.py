@@ -82,6 +82,18 @@ class DB:
 
         return book_info
 
+    def del_hall(self, address):
+        try:
+            self.cursor.execute("DELETE FROM Halls WHERE Loc=%s", (address,))
+
+        except Exception as e:
+            status = "Error"
+
+        else:
+            status = "OK"
+
+        return status
+
     def list_halls(self):
         self.cursor.execute("SELECT Loc, HallDescription, HallImg FROM Halls")
         halls = self.cursor.fetchall()
@@ -111,21 +123,6 @@ class DB:
             info[booking[0]] = [review[0], review[1]]
 
         return info
-
-    def redact_hall(self, address, capacity, equipment_details, hall_description, rental_price, hall_img):
-        try:
-            self.cursor.execute("SELECT OwnerID FROM Halls WHERE Loc=%s", (address,))
-            owner = self.cursor.fetchone()[0]
-            self.cursor.execute("DELETE FROM Halls WHERE Loc=%s", (address,))
-            self.cursor.execute("INSERT INTO Halls (OwnerID, Loc, Capacity, EquipmentDetails, HallDescription, RentalPrice, HallImg) VALUES (%s, %s, %s, %s, %s, %s, %s)", (owner, address, capacity, equipment_details, hall_description, rental_price, hall_img))
-
-        except Exception as e:
-            status = "Error"
-
-        else:
-            status = "OK"
-
-        return status
 
     def list_times(self, address):
         self.cursor.execute("SELECT HallID FROM Halls WHERE Loc=%s", (address,))
