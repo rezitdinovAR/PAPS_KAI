@@ -2,7 +2,7 @@ from fastapi import APIRouter, Body
 from fastapi.responses import RedirectResponse
 import starlette.status as status
 
-from schemas import TextData, AuthMessage, AuthResponse, RegMessage, RegResponse, StructData, LoadOrgMessage, LoadOrgResponse, DelBookMessage, LoadOwnMessage, LoadOwnResponse, ListHallsResponse, HallPageMessage, HallPageResponse, ListReviewsMessage, ListReviewsResponse, ListTimesResponse, AddReviewMessage
+from schemas import TextData, AuthMessage, AuthResponse, RegMessage, RegResponse, StructData, LoadOrgMessage, LoadOrgResponse, DelBookMessage, LoadOwnMessage, LoadOwnResponse, ListHallsResponse, HallPageMessage, HallPageResponse, ListReviewsMessage, ListReviewsResponse, ListTimesResponse, AddReviewMessage, AddHallMessage
 from db import DB
 
 router = APIRouter()
@@ -93,6 +93,16 @@ def load_own(to_load: LoadOwnMessage) -> LoadOwnResponse:
     return LoadOwnResponse(
         info=StructData(
             data=info
+        )
+    )
+
+@router.post(path + '/add_hall', tags=["AddHall"], response_model=RegResponse)
+def add_hall(to_add: AddHallMessage) -> RegResponse:
+    status = executor.add_hall(to_add.email.text, to_add.loc.text, to_add.capacity, to_add.equip.text, to_add.desc.text, to_add.rent, to_add.hall_img.text)
+
+    return RegResponse(
+        status=TextData(
+            text=status
         )
     )
 

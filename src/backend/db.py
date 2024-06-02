@@ -84,8 +84,19 @@ class DB:
 
         return book_info
 
-    def add_hall(self, email):
-        pass
+    def add_hall(self, email, loc, capacity, equip, desc, rent, hall_img):
+        try:
+            self.cursor.execute("SELECT UserID FROM Users WHERE Email=%s", (email,))
+            owner = self.cursor.fetchone()[0]
+            self.cursor.execute("INSERT INTO Halls(OwnerID, Loc, Capacity, EquipmentDetails, HallDescription, RentalPrice, HallImg) VALUES (%s, %s, %s, %s, %s, %s, %s)", (owner, loc, capacity, equip, desc, rent, hall_img))
+            self.connection.commit()
+        except Exception as e:
+            print(e)
+            status = "Error"
+        else:
+            status = "OK"
+
+        return status
 
     def del_hall(self, address):
         try:

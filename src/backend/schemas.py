@@ -66,3 +66,12 @@ class AddReviewMessage(BaseModel):
     address:TextData
     revcom:TextData
     resp:TextData
+
+class AddHallMessage(BaseModel):
+    email:TextData
+    loc:TextData
+    capacity:int
+    equip:TextData
+    desc:TextData
+    rent:int
+    hall_img:TextData

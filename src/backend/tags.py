@@ -20,6 +20,10 @@ tags_metadata = [
         "description":"Загрузка лк владельца"
     },
     {
+        "name":"AddHall",
+        "description":"Добавить зал"
+    },
+    {
         "name":"DeleteHall",
         "description":"Удаление зала"
     },
