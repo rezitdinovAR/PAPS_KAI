@@ -165,7 +165,7 @@ def add_review(to_add: ListReviewsMessage) -> RegResponse:
     )
 
 @router.post(path+'/list_times', tags=["ListTimes"], response_model=ListTimesResponse)
-def list_times(to_list: RegactHallMessage) -> ListTimesResponse:
+def list_times(to_list: HallPageMessage) -> ListTimesResponse:
     times = executor.list_times(to_list.address.text)
 
     return ListTimesResponse(
