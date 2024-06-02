@@ -39,3 +39,6 @@ class LoadOwnMessage(BaseModel):
 
 class LoadOwnResponse(BaseModel):
     info:StructData
+
+class ListHallsResponse(BaseModel):
+    info:StructData

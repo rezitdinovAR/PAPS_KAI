@@ -81,3 +81,13 @@ class DB:
             book_info[hall[1]] = (bookings, hall[2])
 
         return book_info
+
+    def list_halls(self):
+        self.cursor.execute("SELECT Loc, HallDescription, HallImg FROM Halls")
+        halls = self.cursor.fetchall()
+        info={}
+
+        for hall in halls:
+            info[hall[0]] = [hall[1], hall[2]]
+
+        return info

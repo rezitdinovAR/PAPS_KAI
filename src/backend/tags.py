@@ -18,6 +18,10 @@ tags_metadata = [
     {
         "name":"LoadOwn",
         "description":"Загрузка лк владельца"
+    },
+    {
+        "name":"ListHalls",
+        "description":"Вывод списка залов"
     }
 ]
 description = """

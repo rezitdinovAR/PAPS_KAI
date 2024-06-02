@@ -2,7 +2,7 @@ from fastapi import APIRouter, Body
 from fastapi.responses import RedirectResponse
 import starlette.status as status
 
-from schemas import TextData, AuthMessage, AuthResponse, RegMessage, RegResponse, StructData, LoadOrgMessage, LoadOrgResponse, DelBookMessage, LoadOwnMessage, LoadOwnResponse
+from schemas import TextData, AuthMessage, AuthResponse, RegMessage, RegResponse, StructData, LoadOrgMessage, LoadOrgResponse, DelBookMessage, LoadOwnMessage, LoadOwnResponse, ListHallsResponse
 from db import DB
 
 router = APIRouter()
@@ -91,6 +91,16 @@ def load_own(to_load: LoadOwnMessage) -> LoadOwnResponse:
     info = executor.load_own(to_load.email.text)
 
     return LoadOwnResponse(
+        info=StructData(
+            data=info
+        )
+    )
+
+@router.post(path+'list_halls', tags=["ListHalls"], response_model=ListHallsResponse)
+def list_halls() -> ListHallsResponse:
+    info = executor.list_halls()
+
+    return ListHallsResponse(
         info=StructData(
             data=info
         )
