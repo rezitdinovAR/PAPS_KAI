@@ -50,3 +50,20 @@ class DB:
                 book_info[row[0]][2].append(row[3])
 
         return book_info
+
+    def delete_booking(self, address, date_of_book, start_date, end_date):
+        self.cursor.execute("SELECT HallID FROM Halls WHERE Loc=%s", (address,))
+        hallid = self.cursor.fetchone()[0]
+
+        try:
+            self.cursor.execute(
+                "DELETE FROM Booking WHERE HallID=%s AND BookingDate=%s AND StartDate=%s AND EndDate=%s",
+                (hallid, date_of_book, start_date, end_date))
+
+        except Exception:
+            status = "Error"
+
+        else:
+            status = "OK"
+
+        return status

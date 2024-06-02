@@ -24,3 +24,9 @@ class RegResponse(BaseModel):
 
 class LoadOrgResponse(BaseModel):
     info: StructData
+
+class DelBookMessage(BaseModel):
+    address:TextData
+    date_of_book:TextData
+    start_date:TextData
+    end_date:TextData

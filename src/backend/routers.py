@@ -2,7 +2,7 @@ from fastapi import APIRouter, Body
 from fastapi.responses import RedirectResponse
 import starlette.status as status
 
-from schemas import TextData, AuthMessage, AuthResponse, RegMessage, RegResponse, StructData, LoadOrgResponse
+from schemas import TextData, AuthMessage, AuthResponse, RegMessage, RegResponse, StructData, LoadOrgResponse, DelBookMessage
 from db import DB
 
 router = APIRouter()
@@ -72,5 +72,16 @@ def load_org(email: str) -> LoadOrgResponse:
     return LoadOrgResponse(
         info=StructData(
             data=info
+        )
+    )
+
+@router.post(path + '/del_booking', tags=["DeleteBooking"], response_model=RegResponse)
+def delete_booking(to_delete:DelBookMessage) -> RegResponse:
+    status = executor.delete_booking(to_delete.address.text, to_delete.date_of_book.text,
+                                     to_delete.start_date.text, to_delete.end_date.text)
+
+    return RegResponse(
+        status=TextData(
+            text=status
         )
     )

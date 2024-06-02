@@ -10,6 +10,10 @@ tags_metadata = [
     {
         "name":"LoadOrg",
         "description":"Загрузка лк организатора"
+    },
+    {
+        "name":"DeleteBooking",
+        "description":"Удаление бронирования",
     }
 ]
 description = """
