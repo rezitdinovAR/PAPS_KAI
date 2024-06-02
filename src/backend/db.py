@@ -10,7 +10,7 @@ class DB:
             database="MeroPoisk",
         )
 
-        self.cursor = connection.cursor()
+        self.cursor = self.connection.cursor()
 
     def authorize(self, email, password):
         self.cursor.execute("SELECT count(*) FROM Users WHERE Email=%s", (email,))
@@ -84,6 +84,9 @@ class DB:
 
         return book_info
 
+    def add_hall(self, email):
+        pass
+
     def del_hall(self, address):
         try:
             self.cursor.execute("SELECT HallID FROM Halls WHERE Loc=%s", (address,))
@@ -152,5 +155,3 @@ class DB:
             info[booked_time[0]] = [booked_time[1], booked_time[2]]
 
         return info
-
-
