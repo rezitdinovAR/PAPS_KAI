@@ -61,3 +61,8 @@ class ListReviewsResponse(BaseModel):
 
 class ListTimesResponse(BaseModel):
     info:StructData
+
+class AddReviewMessage(BaseModel):
+    address:TextData
+    revcom:TextData
+    resp:TextData

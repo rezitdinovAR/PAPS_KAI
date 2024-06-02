@@ -2,7 +2,7 @@ from fastapi import APIRouter, Body
 from fastapi.responses import RedirectResponse
 import starlette.status as status
 
-from schemas import TextData, AuthMessage, AuthResponse, RegMessage, RegResponse, StructData, LoadOrgMessage, LoadOrgResponse, DelBookMessage, LoadOwnMessage, LoadOwnResponse, ListHallsResponse, HallPageMessage, HallPageResponse, ListReviewsMessage, ListReviewsResponse, ListTimesResponse
+from schemas import TextData, AuthMessage, AuthResponse, RegMessage, RegResponse, StructData, LoadOrgMessage, LoadOrgResponse, DelBookMessage, LoadOwnMessage, LoadOwnResponse, ListHallsResponse, HallPageMessage, HallPageResponse, ListReviewsMessage, ListReviewsResponse, ListTimesResponse, AddReviewMessage
 from db import DB
 
 router = APIRouter()
@@ -155,8 +155,8 @@ def list_reviews(loc: ListReviewsMessage) -> ListReviewsResponse:
     )
 
 @router.post(path+'/add_review', tags=["AddReview"], response_model=RegResponse)
-def add_review(to_add: ListReviewsMessage) -> RegResponse:
-    status = executor.add_review(to_add.address.text)
+def add_review(to_add: AddReviewMessage) -> RegResponse:
+    status = executor.add_review(to_add.address.text, to_add.revcom.text, to_add.resp.text)
 
     return RegResponse(
         status=TextData(

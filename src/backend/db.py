@@ -131,9 +131,10 @@ class DB:
 
         return info
 
-    def add_review(self, address):
-        SELECT
-        self.cursor.execute("INSERT INTO Reviews ()")
+    def add_review(self, address, revcom, resp):
+        self.cursor.execute("SELECT HallID FROM Halls WHERE Loc=%s", (address,))
+        hall = self.cursor.fetchone()[0]
+        self.cursor.execute("INSERT INTO Reviews (HallID, RevCom, Response) VALUES (%s, %s, %s)", (hall, revcom, resp))
 
     def list_times(self, address):
         self.cursor.execute("SELECT HallID FROM Halls WHERE Loc=%s", (address,))
