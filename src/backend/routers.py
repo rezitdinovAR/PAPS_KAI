@@ -144,7 +144,7 @@ def redact_hall(to_redact: RegactHallMessage) -> RegResponse:
         )
     )
 
-@router.post(path+'/redact_hall', tags=["ListTimes"], response_model=ListTimesResponse)
+@router.post(path+'/list_times', tags=["ListTimes"], response_model=ListTimesResponse)
 def list_times(to_list: RegactHallMessage) -> ListTimesResponse:
     times = executor.list_times(to_list.address.text)
 
