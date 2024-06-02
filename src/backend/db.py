@@ -132,9 +132,9 @@ class DB:
         return info
 
     def hall_page(self, address):
+        print(address)
         self.cursor.execute("SELECT Capacity, EquipmentDetails, HallDescription, RentalPrice, HallImg FROM Halls WHERE Loc=%s", (address,))
-        hall = self.cursor.fetchall()[0]
-
+        hall = self.cursor.fetchone()
         return hall
 
     def list_reviews(self, address):
@@ -155,11 +155,19 @@ class DB:
         return info
 
     def add_review(self, address, revcom, resp):
-        self.cursor.execute("SELECT HallID FROM Halls WHERE Loc=%s", (address,))
-        hall = self.cursor.fetchone()[0]
-        self.cursor.execute("INSERT INTO Reviews (HallID, RevCom, Response) VALUES (%s, %s, %s)", (hall, revcom, resp))
-        self.connection.commit()
+        try:
+            self.cursor.execute("SELECT HallID FROM Halls WHERE Loc=%s", (address,))
+            hall = self.cursor.fetchone()[0]
+            self.cursor.execute("INSERT INTO Reviews (HallID, RevCom, Response) VALUES (%s, %s, %s)", (hall, revcom, resp))
+            self.connection.commit()
 
+        except Exception as e:
+            status = "Error"
+
+        else:
+            status = "OK"
+
+        return status
     def list_times(self, address):
         self.cursor.execute("SELECT HallID FROM Halls WHERE Loc=%s", (address,))
         hall = self.cursor.fetchone()[0]
