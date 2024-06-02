@@ -42,3 +42,13 @@ class LoadOwnResponse(BaseModel):
 
 class ListHallsResponse(BaseModel):
     info:StructData
+
+class HallPageMessage(BaseModel):
+    address:TextData
+
+class HallPageResponse(BaseModel):
+    capacity: TextData
+    equip: TextData
+    description: TextData
+    price: int
+    image:TextData

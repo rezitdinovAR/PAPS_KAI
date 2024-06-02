@@ -91,3 +91,10 @@ class DB:
             info[hall[0]] = [hall[1], hall[2]]
 
         return info
+
+    def hall_page(self, address):
+        self.cursor.execute("SELECT Capacity, EquipmentDetails, HallDescription, RentalPrice, HallImg FROM Halls WHERE Loc=%s", (address,))
+        hall = self.cursor.fetchall()[0]
+
+        return hall
+

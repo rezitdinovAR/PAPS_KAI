@@ -22,6 +22,10 @@ tags_metadata = [
     {
         "name":"ListHalls",
         "description":"Вывод списка залов"
+    },
+    {
+        "name":"HallPage",
+        "description":"Вывод страницы зала"
     }
 ]
 description = """
