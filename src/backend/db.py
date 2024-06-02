@@ -76,7 +76,7 @@ class DB:
         book_info = {}
 
         for hall in halls:
-            self.cursor.execute("SELECT BookingDate, StartDate, EndDate FROM Booking WHERE HallID=%s",(hall[0],))
+            self.cursor.execute("SELECT BookingDate, StartDate, EndDate FROM Bookings WHERE HallID=%s",(hall[0],))
             bookings = self.cursor.fetchall()
             book_info[hall[1]] = (bookings, hall[2])
 
