@@ -34,6 +34,10 @@ tags_metadata = [
     {
         "name":"RedactHall",
         "description":"Редактирование зала"
+    },
+    {
+        "name":"ListTimes",
+        "description":"Вывод доступных времен"
     }
 ]
 description = """

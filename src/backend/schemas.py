@@ -66,3 +66,6 @@ class RegactHallMessage(BaseModel):
     description:TextData
     price:int
     image:TextData
+
+class ListTimesResponse(BaseModel):
+    info:StructData

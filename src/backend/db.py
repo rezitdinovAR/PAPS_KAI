@@ -127,5 +127,16 @@ class DB:
 
         return status
 
-    def list_times(self, da):
+    def list_times(self, address):
+        self.cursor.execute("SELECT HallID FROM Halls WHERE Loc=%s", (address,))
+        hall = self.cursor.fetchone()[0]
+        self.cursor.execute("SELECT BookingDate, StartDate, EndDate FROM Bookings WHERE HallID=%s", (hall,))
+        booked_times = self.cursor.fetchall()
+        info = {}
+
+        for booked_time in booked_times:
+            info[booked_time[0]] = [booked_time[1], booked_time[2]]
+
+        return info
+
 
