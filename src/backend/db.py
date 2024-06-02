@@ -40,9 +40,9 @@ class DB:
         book_info = {}
         for row in raw_book_info:
             if row[0] not in book_info.keys():
-                self.cursor.execute("SELECT Loc, HallImg FROM Halls WHERE HallID=%s",(row[0]))
+                self.cursor.execute("SELECT Loc, HallImg FROM Halls WHERE HallID=%s",(row[0],))
                 additional = self.cursor.fetchone()
-                book_info[row[0]] = [[row[1]], [row[2]], [row[3]]] + additional
+                book_info[row[0]] = [[row[1]], [row[2]], [row[3]]] + [additional[0], additional[1]]
 
             else:
                 book_info[row[0]][0].append(row[1])
