@@ -2,7 +2,7 @@ import psycopg2
 
 class DB:
     def __init__(self):
-        connection = psycopg2.connect(
+        self.connection = psycopg2.connect(
             user="postgres",
             password="21032003",
             host="localhost",
@@ -28,6 +28,7 @@ class DB:
         self.cursor.execute("SELECT count(*) FROM Users WHERE Email=%s", (email,))
         if not self.cursor.fetchone()[0]:
             self.cursor.execute("INSERT INTO Users (Email, Password, UserType) VALUES (%s, %s, %s)", (email, password, usertype))
+            self.connection.commit()
             return "OK"
         else:
             return "Incorrect Email"
@@ -59,6 +60,7 @@ class DB:
             self.cursor.execute(
                 "DELETE FROM Bookings WHERE HallID=%s AND BookingDate=%s AND StartDate=%s AND EndDate=%s",
                 (hallid, date_of_book, start_date, end_date))
+            self.connection.commit()
 
         except Exception as e:
             status = "Error"
@@ -87,7 +89,9 @@ class DB:
             self.cursor.execute("SELECT HallID FROM Halls WHERE Loc=%s", (address,))
             hall = self.cursor.fetchone()[0]
             self.cursor.execute("DELETE FROM Reviews WHERE HallID=%s", (hall,))
+            self.connection.commit()
             self.cursor.execute("DELETE FROM Halls WHERE Loc=%s", (address,))
+            self.connection.commit()
 
         except Exception as e:
             print(e)
@@ -135,6 +139,7 @@ class DB:
         self.cursor.execute("SELECT HallID FROM Halls WHERE Loc=%s", (address,))
         hall = self.cursor.fetchone()[0]
         self.cursor.execute("INSERT INTO Reviews (HallID, RevCom, Response) VALUES (%s, %s, %s)", (hall, revcom, resp))
+        self.connection.commit()
 
     def list_times(self, address):
         self.cursor.execute("SELECT HallID FROM Halls WHERE Loc=%s", (address,))
