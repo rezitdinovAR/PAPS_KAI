@@ -184,5 +184,12 @@ def list_times(to_list: HallPageMessage) -> ListTimesResponse:
         )
     )
 
+@router.post(path+'/list_times', tags=["AddBooking"], response_model=RegResponse)
+def add_booking(to_add: HallPageMessage) -> RegResponse:
+    status = executor.add_booking(to_add.email.text, to_add.loc.text, to_add.bkdate.text, to_add.startdate.text, to_add.enddate.text, to_add.status.text)
 
-
+    return RegResponse(
+        status=TextData(
+            text=status
+        )
+    )

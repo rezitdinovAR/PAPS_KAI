@@ -75,3 +75,11 @@ class AddHallMessage(BaseModel):
     desc:TextData
     rent:int
     hall_img:TextData
+
+class AddBookingMessage(BaseModel):
+    email:TextData
+    loc:TextData
+    bkdate:TextData
+    startdate:TextData
+    enddate:TextData
+    status:TextData

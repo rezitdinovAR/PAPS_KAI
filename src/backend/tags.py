@@ -46,6 +46,10 @@ tags_metadata = [
     {
         "name":"ListTimes",
         "description":"Вывод доступных времен"
+    },
+    {
+        "name":"AddBooking",
+        "description":"Добавление бронирования"
     }
 ]
 description = """

@@ -179,3 +179,21 @@ class DB:
             info[booked_time[0]] = [booked_time[1], booked_time[2]]
 
         return info
+
+    def add_booking(self, Email, Address, BookingDate, StartDate, EndDate, Status):
+        self.cursor.execute("SELECT UserID FROM Users WHERE Email=%s",(Email))
+        UserID = self.cursor.fetchone()[0]
+        self.cursor.execute("SELECT HallID FROM Halls WHERE Loc=%s", (Address))
+        HallID = self.cursor.fetchone()[0]
+
+        try:
+            self.cursor.execute("INSERT INTO Bookings (UserID, HallID, BookingDate, StartDate, EndDate, Status) VALUES (%s, %s, %s, %s, %s, %s)",(UserID, HallID, BookingDate, StartDate, EndDate, Status))
+            self.connection.commit()
+
+        except Exception as e:
+            status = "Error"
+
+        else:
+            status = "OK"
+
+        return status
