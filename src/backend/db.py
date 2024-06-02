@@ -90,6 +90,7 @@ class DB:
             self.cursor.execute("DELETE FROM Halls WHERE Loc=%s", (address,))
 
         except Exception as e:
+            print(e)
             status = "Error"
 
         else:
