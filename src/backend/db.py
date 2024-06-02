@@ -99,20 +99,25 @@ class DB:
         return status
 
     def del_hall(self, address):
-        try:
-            self.cursor.execute("SELECT HallID FROM Halls WHERE Loc=%s", (address,))
-            hall = self.cursor.fetchone()[0]
-            self.cursor.execute("DELETE FROM Reviews WHERE HallID=%s", (hall,))
-            self.connection.commit()
-            self.cursor.execute("DELETE FROM Halls WHERE Loc=%s", (address,))
-            self.connection.commit()
+        self.cursor.execute("SELECT HallID FROM Halls WHERE Loc=%s", (address,))
+        hall = self.cursor.fetchone()[0]
+        self.cursor.execute("SELECT BookingID FROM Bookings WHERE HallID=%s", (hall,))
+        bookings = self.cursor.fetchone()[0]
+        if bookings:
+            try:
+                self.cursor.execute("DELETE FROM Reviews WHERE HallID=%s", (hall,))
+                self.connection.commit()
+                self.cursor.execute("DELETE FROM Halls WHERE Loc=%s", (address,))
+                self.connection.commit()
 
-        except Exception as e:
-            print(e)
-            status = "Error"
+            except Exception as e:
+                print(e)
+                status = "Error"
 
+            else:
+                status = "OK"
         else:
-            status = "OK"
+            status = "Hall has bookings"
 
         return status
 
