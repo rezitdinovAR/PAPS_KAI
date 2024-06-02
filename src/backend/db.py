@@ -121,7 +121,7 @@ class DB:
         revs = []
 
         for review in reviews:
-            revs.append[review[0], review[1]]
+            revs.append(review[0], review[1])
 
         info[hall] = revs
 
