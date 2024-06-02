@@ -14,6 +14,10 @@ tags_metadata = [
     {
         "name":"DeleteBooking",
         "description":"Удаление бронирования",
+    },
+    {
+        "name":"LoadOwn",
+        "description":"Загрузка лк владельца"
     }
 ]
 description = """

@@ -40,7 +40,7 @@ class DB:
         book_info = {}
         for row in raw_book_info:
             if row[0] not in book_info.keys():
-                self.cursor.execute("SELECT Loc, HallImg FROM Halls WHERE HallID=%s",)
+                self.cursor.execute("SELECT Loc, HallImg FROM Halls WHERE HallID=%s",(row[0]))
                 additional = self.cursor.fetchone()
                 book_info[row[0]] = [[row[1]], [row[2]], [row[3]]] + additional
 
@@ -67,3 +67,17 @@ class DB:
             status = "OK"
 
         return status
+
+    def load_own(self, email):
+        self.cursor.execute("SELECT UserID FROM Users WHERE Email=%s", (email,))
+        userid = self.cursor.fetchone()[0]
+        self.cursor.execute("SELECT HallID, Loc, HallImg FROM Halls WHERE OwnerID=%s", (userid,))
+        halls = self.cursor.fetchall()
+        book_info = {}
+
+        for hall in halls:
+            self.cursor.execute("SELECT BookingDate, StartDate, EndDate FROM Booking WHERE HallID=%s",(hall[0],))
+            bookings = self.cursor.fetchall()
+            book_info[hall[1]] = (bookings, hall[2])
+
+        return book_info

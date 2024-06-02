@@ -33,3 +33,9 @@ class DelBookMessage(BaseModel):
     date_of_book:TextData
     start_date:TextData
     end_date:TextData
+
+class LoadOwnMessage(BaseModel):
+    email:TextData
+
+class LoadOwnResponse(BaseModel):
+    info:StructData
