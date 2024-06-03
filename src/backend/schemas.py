@@ -82,4 +82,3 @@ class AddBookingMessage(BaseModel):
     bkdate:TextData
     startdate:TextData
     enddate:TextData
-    status:TextData
